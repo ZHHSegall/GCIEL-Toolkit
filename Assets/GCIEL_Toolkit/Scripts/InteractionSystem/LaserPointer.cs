@@ -37,6 +37,9 @@ public class LaserPointer : MonoBehaviour {
     private bool shouldTeleport;
     private bool canTeleport = true;
 
+    [SerializeField]
+    private GameEvent TeleportEvent; 
+
     private float y;
     private float x;
 
@@ -111,6 +114,7 @@ public class LaserPointer : MonoBehaviour {
         Vector3 difference = cameraRigTransform.position - headTransform.position;
         difference.y = 0;
         cameraRigTransform.position = hitPoint + difference;
+        TeleportEvent.Raise();
     }
 
     private void ToggleTelportationReticle(bool state)
